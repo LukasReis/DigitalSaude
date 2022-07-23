@@ -23,8 +23,7 @@ public class TesteSalvar {
 		medicos.setCpf("367.495.410-97");
 		medicos.setGenero("Feminimo");
 		medicos.setDataNascimento(LocalDate.of(1965, Month.JANUARY, 19));
-		medicos.setCRM("CRM/SP 123456");
-		medicos.setEspecializacao("Cardiologia");
+		medicos.setCrm("CRM/SP 123456");
 		medicos.setEmail("yasminalmeidamartins@dayrep.com");
 		medicos.setSenha("8989895");
 		medicos.setTelefone("(61) 5096-9555");
@@ -42,8 +41,7 @@ public class TesteSalvar {
 		enfermeiros.setCpf("367.495.410-97");
 		enfermeiros.setGenero("Feminimo");
 		enfermeiros.setDataNascimento(LocalDate.of(1965, Month.JANUARY, 19));
-		enfermeiros.setCOREM("CRM/SP 123456");
-		enfermeiros.setEspecializacao("Cardiologia");
+		enfermeiros.setCorem("CRM/SP 123456");
 		enfermeiros.setEmail("yasminalmeidamartins@dayrep.com");
 		enfermeiros.setSenha("8989895");
 		enfermeiros.setTelefone("(61) 5096-9555");
@@ -61,8 +59,7 @@ public class TesteSalvar {
 		tecsEnf.setCpf("367.495.410-97");
 		tecsEnf.setGenero("Feminimo");
 		tecsEnf.setDataNascimento(LocalDate.of(1965, Month.JANUARY, 19));
-		tecsEnf.setCOREM("CRM/SP 123456");
-		tecsEnf.setEspecializacao("Cardiologia");
+		tecsEnf.setCorem("CRM/SP 123456");
 		tecsEnf.setEmail("yasminalmeidamartins@dayrep.com");
 		tecsEnf.setSenha("8989895");
 		tecsEnf.setTelefone("(61) 5096-9555");

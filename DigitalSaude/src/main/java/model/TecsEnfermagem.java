@@ -11,7 +11,7 @@ public class TecsEnfermagem extends CadastroGenerico {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
-	private String COREM;
+	private String corem;
 
 	// Métodos Acessores e Modicadores
 	public Long getId() {
@@ -23,19 +23,20 @@ public class TecsEnfermagem extends CadastroGenerico {
 	}
 
 	public String getCOREM() {
-		return COREM;
+		return corem;
 	}
 
-	public void setCOREM(String cOREM) {
-		COREM = cOREM;
+	public void setCorem(String corem) {
+		this.corem = corem;
 	}
 
-	//Método toString  
-	
+	// Método toString
+
 	@Override
 	public String toString() {
-		return "Enfermeiro [id=" + id + ", nomeCompleto=" + super.getNomeCompleto() + ", cpf=" + super.getCpf() + ", genero=" + super.getGenero()
-				+ ", dataNascimento=" + super.getDataNascimento() + ", +  email=" + super.getEmail() + ", COREN=" + getCOREM() + ", senha=" + super.getSenha() + ", telefone="
+		return "Enfermeiro [id=" + id + ", nomeCompleto=" + super.getNomeCompleto() + ", cpf=" + super.getCpf()
+				+ ", genero=" + super.getGenero() + ", dataNascimento=" + super.getDataNascimento() + ", +  email="
+				+ super.getEmail() + ", COREN=" + getCOREM() + ", senha=" + super.getSenha() + ", telefone="
 				+ super.getTelefone() + "]";
 	}
 }

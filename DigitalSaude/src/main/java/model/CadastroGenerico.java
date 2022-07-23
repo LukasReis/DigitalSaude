@@ -1,8 +1,9 @@
 package model;
 
+//Classe abastrata, responsavel por ser ter atributos, a serem herdados, para economizar linhas de codigo
+
 import java.time.LocalDate;
 import java.util.Objects;
-
 import javax.persistence.MappedSuperclass;
 
 @MappedSuperclass
@@ -12,7 +13,6 @@ public abstract class CadastroGenerico {
 	private String cpf;
 	private String genero;
 	private LocalDate dataNascimento;
-	private String especializacao;
 	private String email;
 	private String senha;
 	private String telefone;
@@ -51,14 +51,6 @@ public abstract class CadastroGenerico {
 		this.dataNascimento = dataNascimento;
 	}
 
-	public String getEspecializacao() {
-		return especializacao;
-	}
-
-	public void setEspecializacao(String especializacao) {
-		this.especializacao = especializacao;
-	}
-
 	public String getEmail() {
 		return email;
 	}
@@ -84,14 +76,14 @@ public abstract class CadastroGenerico {
 	}
 
 	// Método toString
-	
+
 	@Override
 	public int hashCode() {
-		return Objects.hash(cpf, dataNascimento, email, especializacao, genero, nomeCompleto, senha, telefone);
+		return Objects.hash(cpf, dataNascimento, email, genero, nomeCompleto, senha, telefone);
 	}
-		
+
 	// HashCode e Equals
-	
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -102,8 +94,8 @@ public abstract class CadastroGenerico {
 			return false;
 		CadastroGenerico other = (CadastroGenerico) obj;
 		return Objects.equals(cpf, other.cpf) && Objects.equals(dataNascimento, other.dataNascimento)
-				&& Objects.equals(email, other.email) && Objects.equals(especializacao, other.especializacao)
 				&& Objects.equals(genero, other.genero) && Objects.equals(nomeCompleto, other.nomeCompleto)
 				&& Objects.equals(senha, other.senha) && Objects.equals(telefone, other.telefone);
 	}
+
 }

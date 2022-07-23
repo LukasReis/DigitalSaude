@@ -1,7 +1,8 @@
 package model;
 
-import java.util.Objects;
+//Classe responsavel, por ser a representar de a entidade enfermeiros, no banco de dados através da JPA juntamente com o Hibernate
 
+import java.util.Objects;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -13,7 +14,7 @@ public class Enfermeiros extends CadastroGenerico {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
-	private String COREM;
+	private String corem;
 
 	// Métodos Acessores e Modificadores
 
@@ -25,12 +26,12 @@ public class Enfermeiros extends CadastroGenerico {
 		this.id = id;
 	}
 
-	public String getCOREM() {
-		return COREM;
+	public String getCorem() {
+		return corem;
 	}
 
-	public void setCOREM(String cOREM) {
-		COREM = cOREM;
+	public void setCorem(String corem) {
+		this.corem = corem;
 	}
 
 	// Método toString
@@ -39,7 +40,7 @@ public class Enfermeiros extends CadastroGenerico {
 	public String toString() {
 		return "Enfermeiro [id=" + id + ", nomeCompleto=" + super.getNomeCompleto() + ", cpf=" + super.getCpf()
 				+ ", genero=" + super.getGenero() + ", dataNascimento=" + super.getDataNascimento() + ", +  email="
-				+ super.getEmail() + ", COREN=" + getCOREM() + ", senha=" + super.getSenha() + ", telefone="
+				+ super.getEmail() + ", corem=" + getCorem() + ", senha=" + super.getSenha() + ", telefone="
 				+ super.getTelefone() + "]";
 	}
 
@@ -49,7 +50,7 @@ public class Enfermeiros extends CadastroGenerico {
 	public int hashCode() {
 		final int prime = 31;
 		int result = super.hashCode();
-		result = prime * result + Objects.hash(COREM, id);
+		result = prime * result + Objects.hash(corem, id);
 		return result;
 	}
 
@@ -62,7 +63,7 @@ public class Enfermeiros extends CadastroGenerico {
 		if (getClass() != obj.getClass())
 			return false;
 		Enfermeiros other = (Enfermeiros) obj;
-		return Objects.equals(COREM, other.COREM) && Objects.equals(id, other.id);
+		return Objects.equals(corem, other.corem) && Objects.equals(id, other.id);
 	}
 
 }
