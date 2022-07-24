@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Frameset//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>Medicos</title>
+</head>
+<h:body>
+	<h:form id="menu">
+		<p:breadCrumb>
+			<p:menuitem value="Home Page" action="index.xhtml" />
+			<p:menuitem value="Medicos" action="medicos.xhtml" />
+			<p:menuitem value="Pacientes" action="paciente.xhtml" />
+			<p:menuitem />
+		</p:breadCrumb>
+	</h:form>
+	<h:form id="formdados">
+		<h:messages showDetail="true" showSumary="false" id="msg" />
+		<h:panelGrid columns="2">
+			<h:outputLabel>Nome Completo</h:outputLabel>
+			<h:inputText readonly="true" requiredMessage="Campo Obrigatório!"
+				value="#{MedicoManagedBean.nomeCompleto}" />
+			<h:outputLabel>Data de Nascimento</h:outputLabel>
+			<p:datePicker readonly="true" requiredMessage="Campo Obrigatório!"
+				value="#{MedicoManagedBean.dataNascimento}" />
+			<h:outputLabel>CPF</h:outputLabel>
+			<h:inputText readonly="true" requiredMessage="Campo Obrigatório!"
+				value="#{MedicoManagedBean.cpf}" />
+			<h:outputLabel>Gênero</h:outputLabel>
+			<h:inputText readonly="true" requiredMessage="Campo Obrigatório!"
+				value="#{MedicoManagedBean.genero}" />
+			<h:outputLabel>Especializações</h:outputLabel>
+			<h:inputText readonly="true" requiredMessage="Campo Obrigatório!"
+				value="#{MedicoManagedBean.especializacao}" />
+			<h:outputLabel>Email</h:outputLabel>
+			<h:inputText readonly="true" requiredMessage="Campo Obrigatório!"
+				value="#{MedicoManagedBean.email}" />
+			<h:outputLabel>Senha</h:outputLabel>
+			<h:inputText readonly="true" requiredMessage="Campo Obrigatório!"
+				value="#{MedicoManagedBean.senha}" />
+			<h:outputLabel>Telefone</h:outputLabel>
+			<h:inputText readonly="true" requiredMessage="Campo Obrigatório!"
+				value="#{MedicoManagedBean.telefone}" />
+		</h:panelGrid>
+		<p:commandButton value="Salvar" action="#{usuarioManagedBean.salvar}" />
+		<p:commandButton value="Novo" action="#{usuarioManagedBean.novo}" />
+	</h:form>
+	<h:form id="formconsultar">
+		<p:panel header="Consultar Medico">
+			<p:panelGrid columns="3">
+				<h:outputLabel value="Digite um nome:" />
+				<p:inputText value="#{usuarioManagedBean.pesquisa}" />
+				<p:commandButton value="Buscar Medico"
+					action="#{usuarioManagedBean.pesquisar}" />
+			</p:panelGrid>
+		</p:panel>
+	</h:form>
+	<h:form>
+		<p:dataTable value="#{usuarioManagedBean.list}" var="x">
+			<p:column>
+				<h:outputText value="#{x.nomeCompleto}" />
+			</p:column>
+			<p:column>
+				<h:outputText value="#{x.dataNascimento}" />
+			</p:column>
+			<p:column>
+				<h:outputText value="#{x.cpf}" />
+			</p:column>
+			<p:column>
+				<h:outputText value="#{x.genero}" />
+			</p:column>
+			<p:column>
+				<h:outputText value="#{x.especializacao}" />
+			</p:column>
+			<p:column>
+				<h:outputText value="#{x.email}" />
+			</p:column>
+			<p:column>
+				<h:outputText value="#{x.senha}" />
+			</p:column>
+			<p:column>
+				<h:outputText value="#{x.telefone}" />
+			</p:column>
+			<p:column>
+				<h:commandLink immediate="true" id="botaoeditar">
+					<h:graphicImage url="resources/img/editar.png" />
+					<f:setPropertyActionListener value="#{x}"
+						target="#{usuarioManagedBean.medicos}" />
+					<f:ajax execute="botaoeditar" render=":formdados" />
+				</h:commandLink>
+			</p:column>
+			<p:column>
+				<h:commandLink immediate="true" id="botaoexcluir"
+					action="#{usuarioManagedBean.deletar}">
+					<h:graphicImage url="resources/img/excluir.png" />
+					<f:setPropertyActionListener value="#{x}"
+						target="#{usuarioManagedBean.medicos}" />
+					<f:ajax execute="botaoexcluir" render="@form :formdados:msg" />
+				</h:commandLink>
+			</p:column>
+			
+		</p:dataTable>
+	</h:form>
+</h:body>
+</html>

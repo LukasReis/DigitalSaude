@@ -47,9 +47,9 @@ public class Medicos extends CadastroGenerico {
 
 	@Override
 	public String toString() {
-		return "Enfermeiro [id=" + id + ", nomeCompleto=" + super.getNomeCompleto() + ", cpf=" + super.getCpf()
+		return "Medicos [id=" + id + ", nomeCompleto=" + super.getNomeCompleto() + ", cpf=" + super.getCpf()
 				+ ", genero=" + super.getGenero() + ", dataNascimento=" + super.getDataNascimento() + ", +  email="
-				+ super.getEmail() + ", corem=" + getCrm() + ", senha=" + super.getSenha() + ", telefone="
+				+ super.getEmail() + ", CRM=" + getCrm() + ", senha=" + super.getSenha() + ", telefone="
 				+ super.getTelefone() + "]";
 	}
 

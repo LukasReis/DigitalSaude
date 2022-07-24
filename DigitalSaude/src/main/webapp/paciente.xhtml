@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Frameset//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>Pacientes</title>
+</head>
+<h:body>
+	<h:form id="menu">
+		<p:breadCrumb>
+			<p:menuitem />
+			<p:menuitem value="Home Page" action="index.xhtml" />
+			<p:menuitem value="Pacientes" action="paciente.xhtml" />
+			<p:menuitem />
+		</p:breadCrumb>
+	</h:form>
+
+	<h:form id="formconsultar">
+		<p:panel header="Consultar Paciente">
+			<p:panelGrid columns="3">
+				<h:outputLabel value="Digite um nome:" />
+				<p:inputText value="#{pacienteManagedBean.pesquisa}" />
+				<p:commandButton value="Buscar Paciente"
+					action="#{pacienteManagedBean.pesquisar}" />
+			</p:panelGrid>
+		</p:panel>
+	</h:form>
+	
+</h:body>
+</html>
