@@ -73,13 +73,13 @@ public class TesteSalvar {
 		DaoGeneric<Pacientes> daoGeneric = new DaoGeneric<Pacientes>();
 		Pacientes pacientes = new Pacientes();
 
-		pacientes.setNomeCompleto("Lucas da Silva dos Reis");
-		pacientes.setCpf("888.097.921-30");
+		pacientes.setNomeCompleto("lucas2");
+		pacientes.setCpf("lucas2");
 		pacientes.setDataNascimento(LocalDate.of(2000, Month.OCTOBER, 12));
-		pacientes.setGenero("Masculino");
-		pacientes.setTelefone("61-33752362");
-		pacientes.setEmail("luke.silvareis@gamil.com");
-		pacientes.setSenha("12out2000");
+		pacientes.setGenero("lucas2");
+		pacientes.setTelefone("88888888");
+		pacientes.setEmail("lucas2");
+		pacientes.setSenha("lucas2");
 
 		daoGeneric.salvar(pacientes);
 

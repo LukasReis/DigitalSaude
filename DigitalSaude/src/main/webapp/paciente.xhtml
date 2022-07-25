@@ -4,30 +4,89 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
-<title>Pacientes</title>
-</head>
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<title>Pacientes</title>
+</h:head>
 <h:body>
 	<h:form id="menu">
-		<p:breadCrumb>
-			<p:menuitem />
-			<p:menuitem value="Home Page" action="index.xhtml" />
+		<p:menubar>
 			<p:menuitem value="Pacientes" action="paciente.xhtml" />
-			<p:menuitem />
-		</p:breadCrumb>
+			<p:menuitem value="Medicos" action="medicos.xhtml" />
+		</p:menubar>
 	</h:form>
+	<h:form id="formdados">
+		<h:messages showDetail="true" showSumary="false" id="msg" />
+		<h:panelGrid columns="2">
+			<h:outputLabel>Nome Completo</h:outputLabel>
+			<p:inputText required="true" requiredMessage="Nome obrigat�rio!"
+				value="#{pacienteManagedBean.paciente.nomeCompleto}" />
 
-	<h:form id="formconsultar">
+			<h:outputLabel>CPF</h:outputLabel>
+			<p:inputText required="true" requiredMessage="Nome obrigat�rio!"
+				value="#{pacienteManagedBean.paciente.cpf}" />
+
+			<h:outputLabel>Senha</h:outputLabel>
+			<p:inputText value="#{pacienteManagedBean.paciente.senha}" />
+
+			<h:outputLabel>E-mail</h:outputLabel>
+			<p:inputText value="#{pacienteManagedBean.paciente.email}" />
+
+			<p:outputLabel for="basic" value="Data De Nascimento" />
+
+			<p:datePicker id="basic"
+				value="#{pacienteManagedBean.paciente.dataNascimento}" />
+
+			<h:outputLabel>Telefone</h:outputLabel>
+			<p:inputText value="#{pacienteManagedBean.paciente.telefone}" />
+
+		</h:panelGrid>
+		<p:commandButton value="Salvar" action="#{pacienteManagedBean.salvar}" />
+	</h:form>
+	<h:form>
 		<p:panel header="Consultar Paciente">
 			<p:panelGrid columns="3">
 				<h:outputLabel value="Digite um nome:" />
 				<p:inputText value="#{pacienteManagedBean.pesquisa}" />
 				<p:commandButton value="Buscar Paciente"
-					action="#{pacienteManagedBean.pesquisar}" />
+					action="#{pacienteManagedBean.pesquisar}" update="customers" />
 			</p:panelGrid>
 		</p:panel>
+
+		<p:dataTable id="customers" var="x"
+			value="#{pacienteManagedBean.list}"
+			filteredValue="#{pacienteManagedBean.list}" rowKey="#{x.id}"
+			selection="#{pacienteManagedBean.selectedPaciente}"
+			selectionMode="single">
+
+			<p:column headerText="Nome Completo" sortBy="#{x.nomeCompleto}"
+				filterBy="#{x.nomeCompleto}" filterMatchMode="contains">
+				<h:outputText value="#{x.nomeCompleto}" />
+			</p:column>
+			<p:column headerText="Email" sortBy="#{x.email}"
+				filterBy="#{x.email}" filterMatchMode="contains">
+				<h:outputText value="#{x.email}" />
+			</p:column>
+			<p:column headerText="Data de Nascimento"
+				sortBy="#{x.dataNascimento}" filterBy="#{x.dataNascimento}"
+				filterMatchMode="contains">
+				<h:outputText value="#{x.dataNascimento}" />
+			</p:column>
+			<p:column headerText="Telefone" sortBy="#{x.telefone}"
+				filterBy="#{x.telefone}" filterMatchMode="contains">
+				<h:outputText value="#{x.telefone}" />
+			</p:column>
+
+			<p:column>
+				<h:commandLink immediate="true" id="botaoeditar">
+					<h:graphicImage url="./resources/img/editar.png" />
+					<f:setPropertyActionListener value="#{x}"
+						target="#{pacienteManagedBean.paciente}" />
+					<f:ajax execute="botaoeditar" render=":formdados" />
+				</h:commandLink>
+			</p:column>
+
+		</p:dataTable>
 	</h:form>
-	
 </h:body>
 </html>

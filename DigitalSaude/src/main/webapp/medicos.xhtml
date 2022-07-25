@@ -4,104 +4,72 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
-<title>Medicos</title>
-</head>
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<title>Medicos</title>
+</h:head>
 <h:body>
 	<h:form id="menu">
-		<p:breadCrumb>
-			<p:menuitem value="Home Page" action="index.xhtml" />
-			<p:menuitem value="Medicos" action="medicos.xhtml" />
+		<p:menubar>
 			<p:menuitem value="Pacientes" action="paciente.xhtml" />
-			<p:menuitem />
-		</p:breadCrumb>
+			<p:menuitem value="Medicos" action="medicos.xhtml" />
+		</p:menubar>
 	</h:form>
 	<h:form id="formdados">
 		<h:messages showDetail="true" showSumary="false" id="msg" />
 		<h:panelGrid columns="2">
 			<h:outputLabel>Nome Completo</h:outputLabel>
-			<h:inputText readonly="true" requiredMessage="Campo Obrigatório!"
-				value="#{MedicoManagedBean.nomeCompleto}" />
+			<p:inputText requiredMessage="Campo Obrigatório!"
+				value="#{medicoManagedBean.medicos.nomeCompleto}" />
 			<h:outputLabel>Data de Nascimento</h:outputLabel>
-			<p:datePicker readonly="true" requiredMessage="Campo Obrigatório!"
-				value="#{MedicoManagedBean.dataNascimento}" />
+			<p:datePicker requiredMessage="Campo Obrigatório!"
+				value="#{medicoManagedBean.medicos.dataNascimento}" />
 			<h:outputLabel>CPF</h:outputLabel>
-			<h:inputText readonly="true" requiredMessage="Campo Obrigatório!"
-				value="#{MedicoManagedBean.cpf}" />
-			<h:outputLabel>Gênero</h:outputLabel>
-			<h:inputText readonly="true" requiredMessage="Campo Obrigatório!"
-				value="#{MedicoManagedBean.genero}" />
-			<h:outputLabel>Especializações</h:outputLabel>
-			<h:inputText readonly="true" requiredMessage="Campo Obrigatório!"
-				value="#{MedicoManagedBean.especializacao}" />
+			<p:inputText requiredMessage="Campo Obrigatório!"
+				value="#{medicoManagedBean.medicos.cpf}" />
+			<h:outputLabel>Genero</h:outputLabel>
+			<p:inputText requiredMessage="Campo Obrigatório!"
+				value="#{medicoManagedBean.medicos.genero}" />
+
 			<h:outputLabel>Email</h:outputLabel>
-			<h:inputText readonly="true" requiredMessage="Campo Obrigatório!"
-				value="#{MedicoManagedBean.email}" />
+			<p:inputText requiredMessage="Campo Obrigatório!"
+				value="#{medicoManagedBean.medicos.email}" />
 			<h:outputLabel>Senha</h:outputLabel>
-			<h:inputText readonly="true" requiredMessage="Campo Obrigatório!"
-				value="#{MedicoManagedBean.senha}" />
+			<p:inputText requiredMessage="Campo Obrigatório!"
+				value="#{medicoManagedBean.medicos.senha}" />
 			<h:outputLabel>Telefone</h:outputLabel>
-			<h:inputText readonly="true" requiredMessage="Campo Obrigatório!"
-				value="#{MedicoManagedBean.telefone}" />
+			<p:inputText requiredMessage="Campo Obrigatório!"
+				value="#{medicoManagedBean.medicos.telefone}" />
 		</h:panelGrid>
-		<p:commandButton value="Salvar" action="#{usuarioManagedBean.salvar}" />
-		<p:commandButton value="Novo" action="#{usuarioManagedBean.novo}" />
+		<p:commandButton value="Salvar" action="#{medicoManagedBean.salvar}" />
 	</h:form>
 	<h:form id="formconsultar">
 		<p:panel header="Consultar Medico">
 			<p:panelGrid columns="3">
 				<h:outputLabel value="Digite um nome:" />
-				<p:inputText value="#{usuarioManagedBean.pesquisa}" />
+				<p:inputText value="#{medicoManagedBean.pesquisa}" />
 				<p:commandButton value="Buscar Medico"
-					action="#{usuarioManagedBean.pesquisar}" />
+					action="#{medicoManagedBean.pesquisar}" />
 			</p:panelGrid>
 		</p:panel>
 	</h:form>
 	<h:form>
-		<p:dataTable value="#{usuarioManagedBean.list}" var="x">
-			<p:column>
+		<p:dataTable var="x" value="#{medicoManagedBean.list}"
+			filteredValue="#{pacienteManagedBean.list}" rowKey="#{x.id}">
+			<p:column headerText="Nome Completo" sortBy="#{x.nomeCompleto}"
+				filterBy="#{x.nomeCompleto}" filterMatchMode="contains">
 				<h:outputText value="#{x.nomeCompleto}" />
 			</p:column>
-			<p:column>
-				<h:outputText value="#{x.dataNascimento}" />
-			</p:column>
-			<p:column>
-				<h:outputText value="#{x.cpf}" />
-			</p:column>
-			<p:column>
-				<h:outputText value="#{x.genero}" />
-			</p:column>
-			<p:column>
-				<h:outputText value="#{x.especializacao}" />
-			</p:column>
-			<p:column>
+			<p:column headerText="Email" sortBy="#{x.email}"
+				filterBy="#{x.email}" filterMatchMode="contains">
 				<h:outputText value="#{x.email}" />
 			</p:column>
-			<p:column>
-				<h:outputText value="#{x.senha}" />
+			<p:column headerText="Data de Nascimento"
+				sortBy="#{x.dataNascimento}" filterBy="#{x.dataNascimento}"
+				filterMatchMode="contains">
+				<h:outputText value="#{x.dataNascimento}" />
 			</p:column>
-			<p:column>
-				<h:outputText value="#{x.telefone}" />
-			</p:column>
-			<p:column>
-				<h:commandLink immediate="true" id="botaoeditar">
-					<h:graphicImage url="resources/img/editar.png" />
-					<f:setPropertyActionListener value="#{x}"
-						target="#{usuarioManagedBean.medicos}" />
-					<f:ajax execute="botaoeditar" render=":formdados" />
-				</h:commandLink>
-			</p:column>
-			<p:column>
-				<h:commandLink immediate="true" id="botaoexcluir"
-					action="#{usuarioManagedBean.deletar}">
-					<h:graphicImage url="resources/img/excluir.png" />
-					<f:setPropertyActionListener value="#{x}"
-						target="#{usuarioManagedBean.medicos}" />
-					<f:ajax execute="botaoexcluir" render="@form :formdados:msg" />
-				</h:commandLink>
-			</p:column>
-			
+
 		</p:dataTable>
 	</h:form>
 </h:body>

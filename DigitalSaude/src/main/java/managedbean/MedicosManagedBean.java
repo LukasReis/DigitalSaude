@@ -14,7 +14,7 @@ import model.Medicos;
 
 
 @ViewScoped
-@ManagedBean(name = "MedicoManagedBean")
+@ManagedBean(name = "medicoManagedBean")
 public class MedicosManagedBean {
 	
 		private Medicos medicos = new Medicos();
@@ -63,6 +63,7 @@ public class MedicosManagedBean {
 
 		public String pesquisar() {
 			listMedicos = daoMedicos.pesquisarNome(pesquisa);
+			System.out.println(listMedicos);
 			return "";
 		} 
 

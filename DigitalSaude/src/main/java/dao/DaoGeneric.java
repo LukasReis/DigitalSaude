@@ -12,10 +12,10 @@ public class DaoGeneric<E> {
 	private EntityManager entityManager = HibernateUtil.getEntityManager();
 	
 	public void salvar(E entidade) {
-		EntityTransaction trasaction = entityManager.getTransaction();
-		trasaction.begin();
+		EntityTransaction transaction = entityManager.getTransaction();
+		transaction.begin();
 		entityManager.persist(entidade);
-		trasaction.commit();
+		transaction.commit();
 
 	}
 	
@@ -46,7 +46,6 @@ public class DaoGeneric<E> {
 	
 	public List<E> listar (Class<E> entidade){
 		EntityTransaction transaction = entityManager.getTransaction();
-		transaction.begin();
 		List<E> lista = entityManager.createQuery("from "+ entidade.getName()).getResultList();
 		return lista;
 	}

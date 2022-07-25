@@ -1,6 +1,5 @@
 package managedbean;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -17,9 +16,10 @@ import model.Pacientes;
 public class PacienteManagedBean {
 
 		private Pacientes paciente = new Pacientes();
-		private List<Pacientes> list = new ArrayList<Pacientes>();
+		private List<Pacientes> list;
 		private DaoPaciente<Pacientes> daoPaciente = new DaoPaciente<Pacientes>();
 		private String pesquisa;
+		private Pacientes selectedPaciente;
 		
 		@PostConstruct
 		public void init() {
@@ -37,6 +37,10 @@ public class PacienteManagedBean {
 		public List<Pacientes> getList() {
 			return list;
 		}
+		
+		public void setList(List<Pacientes> list) {
+	        this.list = list;
+	    }
 
 		public String getPesquisa() {
 			return pesquisa;
@@ -46,10 +50,18 @@ public class PacienteManagedBean {
 			this.pesquisa = pesquisa;
 		}
 		
+		public Pacientes getSelectedPaciente() {
+	        return selectedPaciente;
+	    }
+
+	    public void setSelectedProduct(Pacientes selectedPaciente) {
+	        this.selectedPaciente = selectedPaciente;
+	    }
+		
 		// funcionalidade que serão acessadas via FRONT (Pág.XHTML)
 		public String salvar() {
-			daoPaciente.salvar(paciente); // salva no banco, o usuário não vê
-			list.add(paciente); // salva na lista temporário para o usuário ver
+			daoPaciente.salvar(paciente);
+			list.add(paciente);
 			FacesContext.getCurrentInstance().addMessage(null,
 					new FacesMessage(FacesMessage.SEVERITY_INFO, "INFORMAÇÃO: ", "Salvo com sucesso!"));
 			return "";
@@ -57,12 +69,12 @@ public class PacienteManagedBean {
 
 		public String pesquisar() {
 			list = daoPaciente.pesquisarNome(pesquisa);
+			System.out.println(list);
 			return "";
 		}
 
-		public String novo() {
-			paciente = new Pacientes();
-			return "";
+		public void novo() {
+			System.out.println(this.selectedPaciente);
 		}
 		
 }
