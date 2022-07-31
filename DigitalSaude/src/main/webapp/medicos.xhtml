@@ -55,7 +55,9 @@
 	</h:form>
 	<h:form>
 		<p:dataTable var="x" value="#{medicoManagedBean.list}"
-			filteredValue="#{pacienteManagedBean.list}" rowKey="#{x.id}">
+			filteredValue="#{medicoManagedBean.list}" rowKey="#{x.id}"
+			selection="#{medicoManagedBean.selectedMedicos}"
+			selectionMode="single">
 			<p:column headerText="Nome Completo" sortBy="#{x.nomeCompleto}"
 				filterBy="#{x.nomeCompleto}" filterMatchMode="contains">
 				<h:outputText value="#{x.nomeCompleto}" />
@@ -68,6 +70,25 @@
 				sortBy="#{x.dataNascimento}" filterBy="#{x.dataNascimento}"
 				filterMatchMode="contains">
 				<h:outputText value="#{x.dataNascimento}" />
+			</p:column>
+			
+			<p:column>
+				<h:commandLink immediate="true" id="botaoeditar">
+					<h:graphicImage url="/resources/img/editar.png" />
+					<f:setPropertyActionListener value="#{x}"
+						target="#{medicoManagedBean.medicos}" />
+					<f:ajax execute="botaoeditar" render=":formdados" />
+				</h:commandLink>
+			</p:column>
+
+			<p:column>
+				<h:commandLink immediate="true" id="botaoexcluir"
+					action="#{medicoManagedBean.deletar}">
+					<h:graphicImage url="/resources/img/excluir.png" />
+					<f:setPropertyActionListener value="#{x}"
+						target="#{medicoManagedBean.medicos}" />
+					<f:ajax execute="botaoexcluir" render="@form :formdados" />
+				</h:commandLink>
 			</p:column>
 
 		</p:dataTable>

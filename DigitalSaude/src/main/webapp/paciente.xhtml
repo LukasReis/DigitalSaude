@@ -79,10 +79,20 @@
 
 			<p:column>
 				<h:commandLink immediate="true" id="botaoeditar">
-					<h:graphicImage url="./resources/img/editar.png" />
+					<h:graphicImage url="/resources/img/editar.png" />
 					<f:setPropertyActionListener value="#{x}"
 						target="#{pacienteManagedBean.paciente}" />
 					<f:ajax execute="botaoeditar" render=":formdados" />
+				</h:commandLink>
+			</p:column>
+
+			<p:column>
+				<h:commandLink immediate="true" id="botaoexcluir"
+					action="#{pacienteManagedBean.deletar}">
+					<h:graphicImage url="/resources/img/excluir.png" />
+					<f:setPropertyActionListener value="#{x}"
+						target="#{pacienteManagedBean.paciente}" />
+					<f:ajax execute="botaoexcluir" render="@form :formdados" />
 				</h:commandLink>
 			</p:column>
 
